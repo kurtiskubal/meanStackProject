@@ -55,10 +55,9 @@ app.get("/movies", (req, res, next) => {
   });
 });
 
-app.delete("/movies/:id", (req, res, next) => {
-  Movie.remove({ title: req.params.title }).then(result => {
+app.delete("/movies/", (req, res, next) => {
+  Movie.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
-    console.log(title);
     res.status(200).json({ message: "Movie deleted!" });
   });
 });

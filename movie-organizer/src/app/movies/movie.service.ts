@@ -68,14 +68,8 @@ export class MovieService {
     this.moviesChanged.next(this.movies.slice());
   }
   
-  deleteMovie(index: number) {
-    const oneTitle = this.movies[index].title;
-    this.http.delete("http://localhost:3000/movies/" + index)
-      .subscribe(() => {
-        const upMovies = this.movies.filter(movie => movie.title !== oneTitle);
-        this.movies = upMovies;
-        this.moviesChanged.next([...this.movies]);
-      });
+  deleteMovie(index:number) {
+    this.movies.splice(index, 1);
+    this.moviesChanged.next(this.movies.slice());
   }
-
 }
